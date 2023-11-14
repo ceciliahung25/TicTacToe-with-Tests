@@ -5,9 +5,19 @@ def print_board(board):
         print(f"{i} | {' | '.join(cell if cell is not None else ' ' for cell in row)} |")
     print("   0   1   2")
 
+def choose_player_type():
+    while True:
+        choice = input("Choose player type (1 for Human, 2 for RandomBot): ")
+        if choice == '1':
+            return 'X'
+        elif choice == '2':
+            return 'O'
+        else:
+            print("Invalid choice. Please enter 1 or 2.")
+
 def main():
     board = Board()
-    player = 'X'
+    player = choose_player_type()
 
     while True:
         print_board(board)
