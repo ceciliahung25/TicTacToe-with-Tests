@@ -1,4 +1,4 @@
-# TicTacToe-with-OOP
+# TicTacToe-with-Tests
 Starter code for the Tic Tac Toe assignments
 
 ## Introduction
