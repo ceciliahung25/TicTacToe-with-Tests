@@ -28,19 +28,28 @@ class Board:
         for i in range(3):
             # Check rows
             if self.grid[i][0] == self.grid[i][1] == self.grid[i][2] and self.grid[i][0] is not None:
+                print(f"Winner in row {i}")
                 return self.grid[i][0]
     
             # Check columns
             if self.grid[0][i] == self.grid[1][i] == self.grid[2][i] and self.grid[0][i] is not None:
+                print(f"Winner in column {i}")
                 return self.grid[0][i]
     
         # Check diagonals
         if self.grid[0][0] == self.grid[1][1] == self.grid[2][2] and self.grid[0][0] is not None:
+            print("Winner in top-left to bottom-right diagonal")
             return self.grid[0][0]
         elif self.grid[0][2] == self.grid[1][1] == self.grid[2][0] and self.grid[0][2] is not None:
+            print("Winner in top-right to bottom-left diagonal")
             return self.grid[0][2]
     
+        print("No winner yet. Current board state:")
+        for row in self.grid:
+            print(row)
+    
         return None
+
 
 class RandomBot:
     def __init__(self, symbol):
