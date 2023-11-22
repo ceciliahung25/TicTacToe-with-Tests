@@ -17,7 +17,7 @@ class TestTicTacToe(unittest.TestCase):
         board = Board()  
         row, col = 0, 0  
         with self.assertRaises(ValueError):
-            board.grid[row][col] = 'X'  
+            board.grid[row][col] = 'X'
 
     def test_game_initialized_with_empty_board(self):
         board = Board()  
