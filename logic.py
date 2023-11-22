@@ -24,32 +24,40 @@ class Board:
         self.grid[row][col] = player
 
     def get_winner(self):
-        # Check rows, columns, and diagonals
-        for i in range(3):
-            # Check rows
-            if self.grid[i][0] == self.grid[i][1] == self.grid[i][2] and self.grid[i][0] is not None:
-                print(f"Winner in row {i}")
-                return self.grid[i][0]
+        # Check rows
+        for row in self.grid:
+            if row.count('X') == 3:
+                return 'X'
+            elif row.count('O') == 3:
+                return 'O'
     
-            # Check columns
-            if self.grid[0][i] == self.grid[1][i] == self.grid[2][i] and self.grid[0][i] is not None:
-                print(f"Winner in column {i}")
-                return self.grid[0][i]
+        # Check columns
+        for col in range(3):
+            column = [self.grid[row][col] for row in range(3)]
+            if column.count('X') == 3:
+                return 'X'
+            elif column.count('O') == 3:
+                return 'O'
     
         # Check diagonals
-        if self.grid[0][0] == self.grid[1][1] == self.grid[2][2] and self.grid[0][0] is not None:
-            print("Winner in top-left to bottom-right diagonal")
-            return self.grid[0][0]
-        elif self.grid[0][2] == self.grid[1][1] == self.grid[2][0] and self.grid[0][2] is not None:
-            print("Winner in top-right to bottom-left diagonal")
-            return self.grid[0][2]
+        diagonal1 = [self.grid[i][i] for i in range(3)]
+        diagonal2 = [self.grid[i][2 - i] for i in range(3)]
+    
+        if diagonal1.count('X') == 3:
+            return 'X'
+        elif diagonal1.count('O') == 3:
+            return 'O'
+        
+        if diagonal2.count('X') == 3:
+            return 'X'
+        elif diagonal2.count('O') == 3:
+            return 'O'
     
         print("No winner yet. Current board state:")
         for row in self.grid:
             print(row)
     
         return None
-
 
 class RandomBot:
     def __init__(self, symbol):
