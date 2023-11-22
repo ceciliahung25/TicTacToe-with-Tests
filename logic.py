@@ -30,9 +30,10 @@ class Board:
                 return self.grid[0][col]
 
         # Check diagonals
-        if self.check_line([self.grid[i][i] for i in range(3)]) or \
-           self.check_line([self.grid[i][2 - i] for i in range(3)]):
-            return self.grid[1][1]
+        if self.check_line([self.grid[i][i] for i in range(3)]):
+            return self.grid[0][0]
+        elif self.check_line([self.grid[i][2 - i] for i in range(3)]):
+            return self.grid[0][2]
 
         return None
 
@@ -49,4 +50,3 @@ class RandomBot:
     def get_move(self, board):
         available_squares = board.get_empty_squares()
         return random.choice(available_squares) if available_squares else None
-
