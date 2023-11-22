@@ -51,3 +51,14 @@ class RandomBot:
     def get_move(self, board):
         available_squares = board.get_empty_squares()
         return random.choice(available_squares) if available_squares else None
+
+
+def choose_player_type():
+    while True:
+        choice = input("Choose player type (1 for Human, 2 for RandomBot): ")
+        if choice == '1':
+            return 'X'
+        elif choice == '2':
+            return 'O'
+        else:
+            print("Invalid choice. Please enter 1 or 2.")
