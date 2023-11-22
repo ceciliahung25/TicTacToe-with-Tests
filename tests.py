@@ -23,7 +23,7 @@ class TestTicTacToe(unittest.TestCase):
         player2 = board.other_player(player1)
         self.assertNotEqual(player1, player2)
 
-    def test_winning_end_of_games_detected(self):
+    def test_correct_game_winner_detected(self):
         board = Board()
         # Set up a winning scenario
         board.grid = [
@@ -31,6 +31,7 @@ class TestTicTacToe(unittest.TestCase):
             [None, 'O', None],
             ['O', None, 'X'],
         ]
+        print(board.get_winner())  # Add this line to debug
         self.assertEqual(board.get_winner(), 'X')
 
     def test_draw_games_identified(self):
@@ -53,7 +54,7 @@ class TestTicTacToe(unittest.TestCase):
         with self.assertRaises(ValueError):
             board.grid[row][col] = player
 
-    def test_correct_game_winner_detected(self):
+    def test_winning_end_of_games_detected(self):
         board = Board()
         # Set up a winning scenario
         board.grid = [
@@ -61,6 +62,7 @@ class TestTicTacToe(unittest.TestCase):
             [None, 'O', None],
             ['O', None, 'X'],
         ]
+        print(board.get_winner())  # Add this line to debug
         self.assertEqual(board.get_winner(), 'X')
 
 if __name__ == '__main__':
