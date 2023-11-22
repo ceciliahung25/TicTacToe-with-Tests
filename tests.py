@@ -16,8 +16,10 @@ class TestTicTacToe(unittest.TestCase):
     def test_players_can_play_only_in_viable_spots(self):
         board = Board()  # 新的空白棋盘
         row, col = 0, 0  # 假设 (0, 0) 是一个非空位置
-        with self.assertRaises(ValueError):
-            board.grid[row][col] = 'X'
+
+         # 使用 lambda 匿名函数以及 assertRaises 来测试异常
+        self.assertRaises(ValueError, lambda: board.grid.__setitem__((row, col), 'X'))
+    
 
     def test_game_initialized_with_empty_board(self):
         board = Board()  # 新的空白棋盘
