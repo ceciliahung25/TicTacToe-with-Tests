@@ -57,7 +57,8 @@ class Board:
         for row in self.grid:
             print(row)
     
-        return None
+        raise ValueError("Unexpected state: No winner found, but assertion failed.")
+
 
 class RandomBot:
     def __init__(self, symbol):
