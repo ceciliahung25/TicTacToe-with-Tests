@@ -1,5 +1,3 @@
-import random
-
 class Board:
     def __init__(self):
         self.grid = [
@@ -42,6 +40,7 @@ class Board:
 
     def get_empty_squares(self):
         return [(i, j) for i in range(3) for j in range(3) if self.grid[i][j] is None]
+
 
 class RandomBot:
     def __init__(self, symbol):
