@@ -19,26 +19,12 @@ class Board:
         return 'O' if player == 'X' else 'X'
 
     def get_winner(self):
-        # Check rows
-        for row in self.grid:
-            if self.check_line(row):
-                return row[0]
-
-        # Check columns
-        for col in range(3):
-            if self.check_line([self.grid[row][col] for row in range(3)]):
-                return self.grid[0][col]
-
-        # Check diagonals
-        if self.check_line([self.grid[i][i] for i in range(3)]):
-            return self.grid[0][0]
-        elif self.check_line([self.grid[i][2 - i] for i in range(3)]):
-            return self.grid[0][2]
+        # Check rows, columns, and diagonals for a winner
+        for line in self.grid + list(zip(*self.grid)):
+            if line[0] is not None and all(cell == line[0] for cell in line):
+                return line[0]
 
         return None
-
-    def check_line(self, line):
-        return all(cell == line[0] and cell is not None for cell in line) and line[0] is not None
 
     def get_empty_squares(self):
         return [(i, j) for i in range(3) for j in range(3) if self.grid[i][j] is None]
