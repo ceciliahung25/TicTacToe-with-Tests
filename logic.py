@@ -61,6 +61,7 @@ class Board:
             print("Diagonal Winner: O")
             return 'O'
     
+        # Print the board state before returning None
         print("No winner yet. Current board state:")
         for row in self.grid:
             print(row)
