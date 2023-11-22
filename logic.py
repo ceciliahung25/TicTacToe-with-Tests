@@ -8,26 +8,25 @@ class Board:
             [None, None, None],
         ]
 
-    def make_move(self, player, row, col):
-        if self.grid[row][col] is not None:
-            raise ValueError("Selected spot is already occupied.")
-        self.grid[row][col] = player
+    def make_empty_board(self):
+        self.grid = [
+            [None, None, None],
+            [None, None, None],
+            [None, None, None],
+        ]
 
     def other_player(self, player):
         return 'O' if player == 'X' else 'X'
 
     def get_winner(self):
-        # Check rows
         for row in self.grid:
             if self.check_line(row):
                 return row[0]
 
-        # Check columns
         for col in range(3):
             if self.check_line([self.grid[row][col] for row in range(3)]):
                 return self.grid[0][col]
 
-        # Check diagonals
         if self.check_line([self.grid[i][i] for i in range(3)]):
             return self.grid[0][0]
         elif self.check_line([self.grid[i][2 - i] for i in range(3)]):
@@ -40,6 +39,11 @@ class Board:
 
     def get_empty_squares(self):
         return [(i, j) for i in range(3) for j in range(3) if self.grid[i][j] is None]
+
+    def make_move(self, player, row, col):
+        if self.grid[row][col] is not None:
+            raise ValueError("Selected spot is already occupied")
+        self.grid[row][col] = player
 
 
 class RandomBot:
