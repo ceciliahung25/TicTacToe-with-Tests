@@ -17,7 +17,7 @@ class TestTicTacToe(unittest.TestCase):
         board = Board()
         row, col = 0, 0
         with self.assertRaises(ValueError):
-            board[row, col] = 'X'
+            board.make_move('X', row, col)
 
     def test_game_initialized_with_empty_board(self):
         board = Board()
@@ -48,7 +48,7 @@ class TestTicTacToe(unittest.TestCase):
             [None, None, None],
         ]
         with self.assertRaises(ValueError):
-            board[0, 0] = 'X'
+            board.make_move('X', 0, 0)
 
 if __name__ == '__main__':
     unittest.main()
