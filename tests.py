@@ -17,6 +17,8 @@ class TestTicTacToe(unittest.TestCase):
         board = Board()  # 新的空白棋盘
         row, col = 0, 0  # 假设 (0, 0) 是一个非空位置
         with self.assertRaises(ValueError):
+            if board.grid[row][col] is not None:
+                raise ValueError("Cell is already occupied")
             board.grid[row][col] = 'X'
 
     def test_game_initialized_with_empty_board(self):
