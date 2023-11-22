@@ -30,7 +30,7 @@ class Board:
                 return 'X'
             elif row.count('O') == 3:
                 return 'O'
-    
+
         # Check columns
         for col in range(3):
             column = [self.grid[row][col] for row in range(3)]
@@ -38,11 +38,11 @@ class Board:
                 return 'X'
             elif column.count('O') == 3:
                 return 'O'
-    
+
         # Check diagonals
         diagonal1 = [self.grid[i][i] for i in range(3)]
         diagonal2 = [self.grid[i][2 - i] for i in range(3)]
-    
+
         if diagonal1.count('X') == 3:
             return 'X'
         elif diagonal1.count('O') == 3:
@@ -52,12 +52,12 @@ class Board:
             return 'X'
         elif diagonal2.count('O') == 3:
             return 'O'
-    
+
         print("No winner yet. Current board state:")
         for row in self.grid:
             print(row)
-    
-        raise ValueError("Unexpected state: No winner found, but assertion failed.")
+
+        return None
 
 
 class RandomBot:
