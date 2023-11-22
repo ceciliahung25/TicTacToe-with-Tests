@@ -24,15 +24,15 @@ class Board:
         self.grid[row][col] = player
 
     def get_winner(self):
-        # Check rows
-        for row in self.grid:
-            if row[0] == row[1] == row[2] and row[0] is not None:
-                return row[0]
+        # Check rows, columns, and diagonals
+        for i in range(3):
+            # Check rows
+            if self.grid[i][0] == self.grid[i][1] == self.grid[i][2] and self.grid[i][0] is not None:
+                return self.grid[i][0]
     
-        # Check columns
-        for col in range(3):
-            if self.grid[0][col] == self.grid[1][col] == self.grid[2][col] and self.grid[0][col] is not None:
-                return self.grid[0][col]
+            # Check columns
+            if self.grid[0][i] == self.grid[1][i] == self.grid[2][i] and self.grid[0][i] is not None:
+                return self.grid[0][i]
     
         # Check diagonals
         if self.grid[0][0] == self.grid[1][1] == self.grid[2][2] and self.grid[0][0] is not None:
