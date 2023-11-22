@@ -1,51 +1,30 @@
-class Board:
-    def __init__(self):
-        self.grid = [
-            [None, None, None],
-            [None, None, None],
-            [None, None, None],
+import unittest
+from unittest.mock import patch
+from logic import Board, RandomBot, choose_player_type
+
+class TestTicTacToe(unittest.TestCase):
+
+    def test_correct_game_winner_detected(self):
+        board = Board()
+        # Set up a winning scenario
+        board.grid = [
+            ['X', 'O', 'X'],
+            [None, 'O', None],
+            ['O', None, 'X'],
         ]
+        print(board.get_winner())  # Add this line to debug
+        self.assertEqual(board.get_winner(), 'X')
 
-    def make_empty_board(self):
-        self.grid = [
-            [None, None, None],
-            [None, None, None],
-            [None, None, None],
-        ]
+    @patch('builtins.input', side_effect=['1'])
+    def test_players_can_play_only_in_viable_spots(self, mock_input):
+        board = Board()
+        player = choose_player_type()
+        row, col = 0, 0
+        board.grid[row][col] = 'X'
+        print(board.grid)  # Add this line to debug
+        # Ensure the following line raises a ValueError
+        with self.assertRaises(ValueError):
+            board.grid[row][col] = player
 
-    def other_player(self, player):
-        return 'O' if player == 'X' else 'X'
-
-    def get_winner(self):
-        # Check rows
-        for row in self.grid:
-            if self.check_line(row):
-                return row[0]
-
-        # Check columns
-        for col in range(3):
-            if self.check_line([self.grid[row][col] for row in range(3)]):
-                return self.grid[0][col]
-
-        # Check diagonals
-        if self.check_line([self.grid[i][i] for i in range(3)]):
-            return self.grid[0][0]
-        elif self.check_line([self.grid[i][2 - i] for i in range(3)]):
-            return self.grid[0][2]
-
-        return None
-
-    def check_line(self, line):
-        return all(cell == line[0] and cell is not None for cell in line) and line[0] is not None
-
-    def get_empty_squares(self):
-        return [(i, j) for i in range(3) for j in range(3) if self.grid[i][j] is None]
-
-
-class RandomBot:
-    def __init__(self, symbol):
-        self.symbol = symbol
-
-    def get_move(self, board):
-        available_squares = board.get_empty_squares()
-        return random.choice(available_squares) if available_squares else None
+if __name__ == '__main__':
+    unittest.main()
