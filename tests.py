@@ -16,6 +16,7 @@ class TestTicTacToe(unittest.TestCase):
     def test_players_can_play_only_in_viable_spots(self):
         board = Board()  # New empty board
         row, col = 0, 0  # Assume (0, 0) is a non-empty spot
+        board.make_move('O', row, col)  # Occupying the spot with 'O'
         with self.assertRaises(ValueError):
             board.make_move('X', row, col)
 
