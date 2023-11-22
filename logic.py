@@ -1,3 +1,5 @@
+import random
+
 class Board:
     def __init__(self):
         self.grid = [
@@ -36,7 +38,7 @@ class Board:
         return None
 
     def check_line(self, line):
-        return all(cell == line[0] and cell is not None for cell in line)
+        return all(cell == line[0] and cell is not None for cell in line) and line[0] is not None
 
     def get_empty_squares(self):
         return [(i, j) for i in range(3) for j in range(3) if self.grid[i][j] is None]
