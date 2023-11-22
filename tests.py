@@ -12,8 +12,10 @@ class TestTicTacToe(unittest.TestCase):
             [None, None, None],
         ]
         winner = board.get_winner()
+        print(f"Board State: {board.grid}")
         print(f"Winner: {winner}")
         self.assertEqual(winner, 'X')
+    
 
     def test_players_can_play_only_in_viable_spots(self):
         board = Board()  # New empty board
