@@ -68,6 +68,14 @@ class Board:
     
         return None
 
+    def get_empty_squares(self):
+        empty_squares = []
+        for row in range(3):
+            for col in range(3):
+                if self.grid[row][col] is None:
+                    empty_squares.append((row, col))
+        return empty_squares
+
 
 class RandomBot:
     def __init__(self, symbol):
@@ -76,7 +84,6 @@ class RandomBot:
     def get_move(self, board):
         available_squares = board.get_empty_squares()
         return random.choice(available_squares) if available_squares else None
-
 
 def choose_player_type():
     while True:
