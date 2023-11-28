@@ -84,6 +84,3 @@ def choose_player_type():
         if choice == '1':
             return 'X'
         elif choice == '2':
-            return 'O'
-        else:
-            print("Invalid choice. Please enter 1 or 2.")
